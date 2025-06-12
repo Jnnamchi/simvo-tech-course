@@ -7,6 +7,13 @@ export const standardPadding = '25px'
 export const textPrimaryColor = '#4d5054'
 export const themePrimaryColor = '#F2EEE9'
 export const themeRed = '#f36165'
+export const themeBlack = '#383535'
+export const wireChipConnectorColor = 'black'
+export const themePurple = '#9371bd'
+export const memoryBitColor = '#9371bd'
+export const enablerBoxColor = '#dbb856'
+export const registerOnBitValue = themeRed
+export const registerOffBitValue = 'grey'
 
 // Elements
 export const PageTitle = styled.div`

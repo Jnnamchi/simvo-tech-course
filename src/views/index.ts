@@ -1,3 +1,3 @@
 export * from './SimpleCircuitClosed'
-export * from './SimpleCircuitOpen'
+export * from './SimpleCircuit'
 export * from './TransistorCircuitClosed'

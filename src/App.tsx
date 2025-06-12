@@ -3,37 +3,42 @@ import './App.css'
 import styled from 'styled-components'
 import { themePrimaryColor, standardPadding, textPrimaryColor, VerticalAlignContainer, VerticalAlignContent } from './constants'
 
-import SimpleCircuitClosedView from './views/SimpleCircuitClosed'
-import SimpleCircuitOpenView from './views/SimpleCircuitOpen' 
-import TransistorCircuitClosedView from './views/TransistorCircuitClosed'
-import TransistorCircuitOpenView from './views/TransistorCircuitOpen'
-import TransistorCircuitClosedChipView from './views/TransistorCircuitClosedChip'
-import TransistorCircuitOpenChipView from './views/TransistorCircuitOpenChip'
+import SimpleCircuit from './views/SimpleCircuit' 
+import TransistorCircuit from './views/TransistorCircuit'
+import TransistorCircuitChip from './views/TransistorCircuitChip'
+import MemoryBit from './views/MemoryBit'
+import MemoryByte from './views/MemoryByte'
+import MemoryByteEnabler from './views/MemoryByteEnabler'
+import Register from './views/Register'
 
 const pages = [
   {
-    name: 'Simple Circuit Open',
-    component: <SimpleCircuitOpenView></SimpleCircuitOpenView>
+    name: 'Simple Circuit',
+    component: <SimpleCircuit></SimpleCircuit>
   },
   {
-    name: 'Simple Circuit Closed',
-    component: <SimpleCircuitClosedView></SimpleCircuitClosedView>
+    name: 'Transistor Circuit',
+    component: <TransistorCircuit></TransistorCircuit>
   },
   {
-    name: 'Transistor Circuit Open',
-    component: <TransistorCircuitOpenView></TransistorCircuitOpenView>
+    name: 'Transistor Circuit (Chip)',
+    component: <TransistorCircuitChip></TransistorCircuitChip>
   },
   {
-    name: 'Transistor Circuit Closed',
-    component: <TransistorCircuitClosedView></TransistorCircuitClosedView>
+    name: 'Memory Bit',
+    component: <MemoryBit></MemoryBit>
   },
   {
-    name: 'Transistor Circuit Open (Chip)',
-    component: <TransistorCircuitOpenChipView></TransistorCircuitOpenChipView>
+    name: 'Memory Byte',
+    component: <MemoryByte></MemoryByte>
   },
   {
-    name: 'Transistor Circuit Closed (Chip)',
-    component: <TransistorCircuitClosedChipView></TransistorCircuitClosedChipView>
+    name: 'Memory Byte + Enabler',
+    component: <MemoryByteEnabler></MemoryByteEnabler>
+  },
+  {
+    name: 'Register',
+    component: <Register></Register>
   },
 ]
 

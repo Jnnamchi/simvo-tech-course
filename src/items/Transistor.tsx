@@ -18,4 +18,3 @@ const Transistor: React.FC<SimpleCircuitClosedProps> = ({ height, width, x, y, x
 }
   
 export default Transistor
-  
