@@ -2,11 +2,16 @@
 import { ref } from 'vue'
 import SimpleCircuit from '../components/computer/SimpleCircuit.vue'
 import TransistorCircuit from '@/components/computer/TransistorCircuit.vue'
+import TransistorCircuitChip from '@/components/computer/TransistorCircuitChip.vue';
+import MemoryBit from '@/components/computer/MemoryBit.vue';
 
 // Define your component options
 const components = [
   { name: 'Simple Circuit', component: SimpleCircuit },
   { name: 'Transistor Circuit', component: TransistorCircuit },
+  { name: 'Transistor Circuit (Chip)', component: TransistorCircuitChip },
+  { name: 'Memory Bit', component: MemoryBit },
+
   // Add more later like:
   // { name: 'ALU Demo', component: AluDemo },
   // { name: 'Register Display', component: RegisterDisplay },

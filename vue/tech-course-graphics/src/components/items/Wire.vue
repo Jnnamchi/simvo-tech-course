@@ -2,6 +2,19 @@
 import { ref, watch, nextTick } from 'vue'
 import anime from 'animejs'
 import { themeBlack, themeRed } from '../../constants'
+import { computed } from 'vue'
+
+const getStartAndEnd = (d: string): [number, number, number, number] => {
+  const commands = d.trim().split(/[ML]/).filter(Boolean)
+  const [startX, startY] = commands[0].trim().split(' ').map(Number)
+  const [endX, endY] = commands[commands.length - 1].trim().split(' ').map(Number)
+  return [startX, startY, endX, endY]
+}
+
+const coords = computed(() => {
+  const d = props.isOn ? props.pathOn : props.pathOff
+  return getStartAndEnd(d)
+})
 
 interface WireProps {
   pathOn: string
@@ -9,6 +22,8 @@ interface WireProps {
   isOn: boolean
   onClickFn?: () => void
   delay?: number
+  circleStart?: boolean
+  circleEnd?: boolean
 }
 
 const props = defineProps<WireProps>()
@@ -90,5 +105,20 @@ watch(() => props.isOn, async (newVal, oldVal) => {
         }"
       />
     </g>
+
+    <circle
+      v-if="props.circleStart"
+      :cx="coords[0]"
+      :cy="coords[1]"
+      r="12"
+      fill="black"
+    />
+    <circle
+      v-if="props.circleEnd"
+      :cx="coords[2]"
+      :cy="coords[3]"
+      r="12"
+      fill="black"
+    />
   </svg>
 </template>
