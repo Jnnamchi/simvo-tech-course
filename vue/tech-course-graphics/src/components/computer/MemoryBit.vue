@@ -4,13 +4,12 @@ import Wire from '../items/Wire.vue'
 import { PathBuilder } from '../../utils/path'
 import MemoryBitBox from '../items/MemoryBitBox.vue'
 import Chip from '../items/Chip.vue'
+import Label from '../items/Label.vue'
 
 const props = defineProps<{
   height: number
   width: number
 }>()
-
-const isOn = ref(false)
 
 const inputOn = ref(false)
 const setOn = ref(false)
@@ -97,6 +96,7 @@ const outputWirePath = new PathBuilder(props.width, props.height, props.width * 
         :circleStart="true"
         @click="toggleInput"
       />
+      <Label text="INPUT" :x="props.width*0.1" :y="props.height*0.57" :size="24" />
       <Wire
         :pathOn="setWirePathOn"
         :pathOff="setWirePathOff"
@@ -104,6 +104,7 @@ const outputWirePath = new PathBuilder(props.width, props.height, props.width * 
         :circleStart="true"
         @click="toggleSet"
       />
+      <Label text="SET" :x="props.width*0.1" :y="props.height*0.77" :size="24" />
       <Wire
         :pathOn="outputWirePath"
         :pathOff="outputWirePath"
@@ -111,6 +112,7 @@ const outputWirePath = new PathBuilder(props.width, props.height, props.width * 
         :circleEnd="true"
         :delay="300"
       />
+      <Label text="OUTPUT" :x="props.width*0.9" :y="props.height*0.67" :size="24" />
       <MemoryBitBox
         :size="250"
         :x="props.width*0.6"

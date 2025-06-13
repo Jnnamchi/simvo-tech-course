@@ -4,6 +4,7 @@ import SimpleCircuit from '../components/computer/SimpleCircuit.vue'
 import TransistorCircuit from '@/components/computer/TransistorCircuit.vue'
 import TransistorCircuitChip from '@/components/computer/TransistorCircuitChip.vue';
 import MemoryBit from '@/components/computer/MemoryBit.vue';
+import MemoryByte from '@/components/computer/MemoryByte.vue';
 
 // Define your component options
 const components = [
@@ -11,6 +12,7 @@ const components = [
   { name: 'Transistor Circuit', component: TransistorCircuit },
   { name: 'Transistor Circuit (Chip)', component: TransistorCircuitChip },
   { name: 'Memory Bit', component: MemoryBit },
+  { name: 'Memory Byte', component: MemoryByte },
 
   // Add more later like:
   // { name: 'ALU Demo', component: AluDemo },
@@ -41,7 +43,7 @@ const selectedComponent = ref(components[0]) // Default selection
       <div class="component-display">
         <component
           :is="selectedComponent.component"
-          :height="600"
+          :height="700"
           :width="1200"
         />
       </div>
