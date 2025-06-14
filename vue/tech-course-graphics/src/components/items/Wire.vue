@@ -68,7 +68,7 @@ watch(() => props.isOn, async (newVal, oldVal) => {
         :style="{
           fill: 'none',
           stroke: themeBlack,
-          strokeWidth: '12',
+          strokeWidth: '10',
         }"
       />
       <!-- Red animated overlay -->
@@ -78,7 +78,7 @@ watch(() => props.isOn, async (newVal, oldVal) => {
         :style="{
           fill: 'none',
           stroke: themeRed,
-          strokeWidth: '12',
+          strokeWidth: '10',
         }"
       />
     </g>
@@ -91,7 +91,7 @@ watch(() => props.isOn, async (newVal, oldVal) => {
         :style="{
           fill: 'none',
           stroke: themeRed,
-          strokeWidth: '12',
+          strokeWidth: '10',
         }"
       />
       <!-- Black animated overlay -->
@@ -101,7 +101,7 @@ watch(() => props.isOn, async (newVal, oldVal) => {
         :style="{
           fill: 'none',
           stroke: themeBlack,
-          strokeWidth: '12',
+          strokeWidth: '10',
         }"
       />
     </g>

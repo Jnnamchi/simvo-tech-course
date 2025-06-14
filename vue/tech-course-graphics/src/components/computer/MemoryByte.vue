@@ -40,9 +40,9 @@ function getInputWirePathOff (yStart: number) {
   return new PathBuilder(props.width, props.height, props.width * 0.1, props.height * yStart, 10)
   .diag(1, 0.3)
   .right(1)
-  .up(0.3)
-  .diag(1, 0.1)
-  .skip(0, -0.4)
+  .up(0.1)
+  .diag(1, 0.2)
+  .skip(0, -0.3)
   .right(2)
   .build()
 }
@@ -51,9 +51,9 @@ function getInputWirePathOn (yStart: number) {
   return new PathBuilder(props.width, props.height, props.width * 0.1, props.height * yStart, 10)
   .diag(1, 0.3)
   .right(1)
-  .up(0.3)
+  .up(0.1)
   .right(1)
-  .down(0.3)
+  .down(0.1)
   .right(2)
   .build()
 }
@@ -101,23 +101,23 @@ const inputWires = reactive([
 ])
 
 // Set Wire
-const setWirePathOff = new PathBuilder(props.width, props.height, props.width * 0.1, props.height * 0.9, 10)
+const setWirePathOff = new PathBuilder(props.width, props.height, props.width * 0.1, props.height * 0.88, 10)
   .diag(1, 0.3)
   .right(1)
   .up(0.3)
   .diag(1, 0.3)
   .skip(0, -0.6)
   .right(2)
-  .up(1)
+  .up(2)
   .build()
-const setWirePathOn = new PathBuilder(props.width, props.height, props.width * 0.1, props.height * 0.9, 10)
+const setWirePathOn = new PathBuilder(props.width, props.height, props.width * 0.1, props.height * 0.88, 10)
   .diag(1, 0.3)
   .right(1)
   .up(0.3)
   .right(1)
   .down(0.3)
   .right(2)
-  .up(1)
+  .up(2)
   .build()
 
 </script>
@@ -134,27 +134,30 @@ const setWirePathOn = new PathBuilder(props.width, props.height, props.width * 0
         :height="props.height"
         :width="props.width"
       />
+      <!-- Input Wires -->
       <Wire
         v-for="(wire, index) in inputWires"
         :key="index"
-        :pathOn="getInputWirePathOn(index/11 + 0.12)"
-        :pathOff="getInputWirePathOff(index/11 + 0.12)"
+        :pathOn="getInputWirePathOn(index/12 + 0.16)"
+        :pathOff="getInputWirePathOff(index/12 + 0.16)"
         :isOn="wire.isOn"
         :circleStart="true"
         @click="toggleInput(wire)"
       />
-      <Label text="INPUT WIRES" :x="props.width*0.15" :y="props.height*0.8" :size="20" />
+      <Label text="INPUT WIRES" :x="props.width*0.15" :y="props.height*0.79" :size="20" />
+      <!-- Memory Wires -->
       <Wire
         v-for="(wire, index) in inputWires"
         :key="index"
-        :pathOn="getOutputWirePath(index/11 + 0.14)"
-        :pathOff="getOutputWirePath(index/11 + 0.14)"
+        :pathOn="getOutputWirePath(index/12 + 0.18)"
+        :pathOff="getOutputWirePath(index/12 + 0.18)"
         :isOn="wire.outputOn"
         :circleEnd="true"
         @click="toggleInput(wire)"
         :delay="600"
       />
-      <Label text="OUTPUT WIRES" :x="props.width*0.8" :y="props.height*0.84" :size="20" />
+      <Label text="OUTPUT WIRES" :x="props.width*0.8" :y="props.height*0.82" :size="20" />
+      <!-- Set Wire -->
       <Wire
         :pathOn="setWirePathOn"
         :pathOff="setWirePathOff"
@@ -162,14 +165,13 @@ const setWirePathOn = new PathBuilder(props.width, props.height, props.width * 0
         :circleStart="true"
         @click="toggleSet"
       />
-      <Label text="SET WIRE" :x="props.width*0.15" :y="props.height*0.94" :size="20" />
-      <!--
-      <Label text="OUTPUT" :x="props.width*0.9" :y="props.height*0.67" :size="24" /> -->
+      <Label text="SET WIRE" :x="props.width*0.15" :y="props.height*0.92" :size="20" />
+      <!-- Memory Box -->
       <MemoryBitBox
         v-for="(wire, index) in inputWires"
-        :size="65"
+        :size="60"
         :x="props.width*0.6"
-        :y="props.height*(index/11 + 0.09)"
+        :y="props.height*(index/12 + 0.13)"
       />
     </svg>
   </div>

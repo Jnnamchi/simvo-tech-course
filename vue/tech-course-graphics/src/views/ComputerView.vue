@@ -5,6 +5,7 @@ import TransistorCircuit from '@/components/computer/TransistorCircuit.vue'
 import TransistorCircuitChip from '@/components/computer/TransistorCircuitChip.vue';
 import MemoryBit from '@/components/computer/MemoryBit.vue';
 import MemoryByte from '@/components/computer/MemoryByte.vue';
+import MemoryByteEnabler from '@/components/computer/MemoryByteEnabler.vue';
 
 // Define your component options
 const components = [
@@ -13,6 +14,7 @@ const components = [
   { name: 'Transistor Circuit (Chip)', component: TransistorCircuitChip },
   { name: 'Memory Bit', component: MemoryBit },
   { name: 'Memory Byte', component: MemoryByte },
+  { name: 'Memory Byte + Enabler', component: MemoryByteEnabler },
 
   // Add more later like:
   // { name: 'ALU Demo', component: AluDemo },
