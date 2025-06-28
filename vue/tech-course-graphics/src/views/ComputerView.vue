@@ -11,12 +11,16 @@ import Register from '@/components/computer/Register.vue'
 import RegisterRowCol from '@/components/computer/RegisterRowCol.vue'
 import Ram from '@/components/computer/Ram.vue'
 import RamBus from '@/components/computer/RamBus.vue'
+import TransistorNandGate from '@/components/computer/TransistorNandGate.vue'
+import NandGate from '@/components/computer/NandGate.vue'
 
 // Define your component options
 const components = [
   { name: 'Simple Circuit', component: SimpleCircuit },
   { name: 'Transistor Circuit', component: TransistorCircuit },
   { name: 'Transistor Circuit (Chip)', component: TransistorCircuitChip },
+  { name: 'Transistor Nand Gate', component: TransistorNandGate },
+  { name: 'NAND Gate', component: NandGate },
   { name: 'NAND Gate Memory Bit', component: MemoryBitNandGates },
   { name: 'Memory Bit', component: MemoryBit },
   { name: 'Memory Byte', component: MemoryByte },

@@ -1,27 +1,34 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   height: number
   width: number
   x: number
   y: number
+  angle?: number
 }>()
+
+const transform = props.angle !== undefined
+  ? `rotate(${props.angle}, ${props.x}, ${props.y})`
+  : ''
 </script>
 
 <template>
-  <rect
-    :width="width"
-    :height="height"
-    :x="x - width / 2"
-    :y="y - height / 2"
-    rx="5"
-    ry="5"
-    fill="blue"
-  />
-  <rect
-    :width="width / 3"
-    :height="height"
-    :x="x - width / 2 + width/3"
-    :y="y - height / 2"
-    fill="orange"
-  />
+  <g :transform="transform">
+    <rect
+      :width="props.width"
+      :height="props.height"
+      :x="props.x - props.width / 2"
+      :y="props.y - props.height / 2"
+      rx="5"
+      ry="5"
+      fill="blue"
+    />
+    <rect
+      :width="props.width / 3"
+      :height="props.height"
+      :x="props.x - props.width / 2 + props.width / 3"
+      :y="props.y - props.height / 2"
+      fill="orange"
+    />
+  </g>
 </template>
