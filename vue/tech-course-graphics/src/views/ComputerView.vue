@@ -2,23 +2,29 @@
 import { ref } from 'vue'
 import SimpleCircuit from '../components/computer/SimpleCircuit.vue'
 import TransistorCircuit from '@/components/computer/TransistorCircuit.vue'
-import TransistorCircuitChip from '@/components/computer/TransistorCircuitChip.vue';
-import MemoryBit from '@/components/computer/MemoryBit.vue';
-import MemoryByte from '@/components/computer/MemoryByte.vue';
-import MemoryByteEnabler from '@/components/computer/MemoryByteEnabler.vue';
+import TransistorCircuitChip from '@/components/computer/TransistorCircuitChip.vue'
+import MemoryBitNandGates from '@/components/computer/MemoryBitNandGates.vue'
+import MemoryBit from '@/components/computer/MemoryBit.vue'
+import MemoryByte from '@/components/computer/MemoryByte.vue'
+import MemoryByteEnabler from '@/components/computer/MemoryByteEnabler.vue'
+import Register from '@/components/computer/Register.vue'
+import RegisterRowCol from '@/components/computer/RegisterRowCol.vue'
+import Ram from '@/components/computer/Ram.vue'
+import RamBus from '@/components/computer/RamBus.vue'
 
 // Define your component options
 const components = [
   { name: 'Simple Circuit', component: SimpleCircuit },
   { name: 'Transistor Circuit', component: TransistorCircuit },
   { name: 'Transistor Circuit (Chip)', component: TransistorCircuitChip },
+  { name: 'NAND Gate Memory Bit', component: MemoryBitNandGates },
   { name: 'Memory Bit', component: MemoryBit },
   { name: 'Memory Byte', component: MemoryByte },
   { name: 'Memory Byte + Enabler', component: MemoryByteEnabler },
-
-  // Add more later like:
-  // { name: 'ALU Demo', component: AluDemo },
-  // { name: 'Register Display', component: RegisterDisplay },
+  { name: 'Register', component: Register },
+  { name: 'Register Row + Column', component: RegisterRowCol },
+  { name: 'RAM', component: Ram },
+  { name: 'RAM + Bus', component: RamBus },
 ]
 
 const selectedComponent = ref(components[0]) // Default selection

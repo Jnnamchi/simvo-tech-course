@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref, watch, nextTick } from 'vue'
+import { ref, watch, nextTick, computed } from 'vue'
 import anime from 'animejs'
 import { themeBlack, themeRed } from '../../constants'
-import { computed } from 'vue'
 
 const getStartAndEnd = (d: string): [number, number, number, number] => {
   const commands = d.trim().split(/[ML]/).filter(Boolean)
@@ -11,19 +10,18 @@ const getStartAndEnd = (d: string): [number, number, number, number] => {
   return [startX, startY, endX, endY]
 }
 
-const coords = computed(() => {
-  const d = props.isOn ? props.pathOn : props.pathOff
-  return getStartAndEnd(d)
-})
-
 interface WireProps {
+  strokeWidth?: number
   pathOn: string
   pathOff: string
   isOn: boolean
-  onClickFn?: () => void
   delay?: number
   circleStart?: boolean
   circleEnd?: boolean
+  circleSize?: number
+  color?: string
+  hideInactiveWire?: boolean
+  onClickFn?: () => void
 }
 
 const props = defineProps<WireProps>()
@@ -31,7 +29,15 @@ const props = defineProps<WireProps>()
 const redPathRef = ref<SVGPathElement | null>(null)
 const blackPathRef = ref<SVGPathElement | null>(null)
 
-watch(() => props.isOn, async (newVal, oldVal) => {
+const isTransitioning = ref(false)
+
+const coords = computed(() => {
+  const d = props.isOn ? props.pathOn : props.pathOff
+  return getStartAndEnd(d)
+})
+
+watch(() => props.isOn, async (newVal) => {
+  isTransitioning.value = true
   await nextTick()
 
   const animate = (el: SVGPathElement | null) => {
@@ -55,53 +61,59 @@ watch(() => props.isOn, async (newVal, oldVal) => {
   if (!newVal && blackPathRef.value) {
     animate(blackPathRef.value)
   }
+
+  setTimeout(() => {
+    isTransitioning.value = false
+  }, 1000 + (props.delay || 0))
 })
 </script>
 
 <template>
-  <svg @click="props.onClickFn?.()" overflow="visible">
+  <svg
+    overflow="visible"
+    style="cursor: pointer"
+    @click="props.onClickFn?.()"
+  >
     <g v-if="props.isOn">
-      <!-- Black base path (underlay) -->
       <path
+        v-if="isTransitioning && (!hideInactiveWire ?? true)"
         ref="blackPathRef"
         :d="props.pathOn"
         :style="{
           fill: 'none',
-          stroke: themeBlack,
-          strokeWidth: '10',
+          stroke: color ?? themeBlack,
+          strokeWidth: strokeWidth ?? '10',
         }"
       />
-      <!-- Red animated overlay -->
       <path
         ref="redPathRef"
         :d="props.pathOn"
         :style="{
           fill: 'none',
           stroke: themeRed,
-          strokeWidth: '10',
+          strokeWidth: strokeWidth ?? '10',
         }"
       />
     </g>
 
     <g v-else>
-      <!-- Red base path (underlay) -->
       <path
+        v-if="isTransitioning && (!hideInactiveWire ?? true)"
         ref="redPathRef"
         :d="props.pathOff"
         :style="{
           fill: 'none',
           stroke: themeRed,
-          strokeWidth: '10',
+          strokeWidth: strokeWidth ?? '10',
         }"
       />
-      <!-- Black animated overlay -->
       <path
         ref="blackPathRef"
         :d="props.pathOff"
         :style="{
           fill: 'none',
-          stroke: themeBlack,
-          strokeWidth: '10',
+          stroke: color ?? themeBlack,
+          strokeWidth: strokeWidth ?? '10',
         }"
       />
     </g>
@@ -110,14 +122,14 @@ watch(() => props.isOn, async (newVal, oldVal) => {
       v-if="props.circleStart"
       :cx="coords[0]"
       :cy="coords[1]"
-      r="12"
+      :r="circleSize ?? '12'"
       fill="black"
     />
     <circle
       v-if="props.circleEnd"
       :cx="coords[2]"
       :cy="coords[3]"
-      r="12"
+      :r="circleSize ?? '12'"
       fill="black"
     />
   </svg>

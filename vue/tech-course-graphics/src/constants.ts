@@ -12,8 +12,10 @@ export const wireChipConnectorColor = 'black'
 export const themePurple = '#9371bd'
 export const memoryBitColor = '#9371bd'
 export const enablerBoxColor = '#dbb856'
+export const registerBoxColor = '#6e97db'
 export const registerOnBitValue = themeRed
 export const registerOffBitValue = 'grey'
+export const andGateColor = '#dba66e'
 
 // Elements
 export const PageTitle = styled.div`
